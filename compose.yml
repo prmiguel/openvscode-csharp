@@ -1,0 +1,23 @@
+---
+services:
+  openvscode-server:
+    image: openvscode-csharp:latest
+    container_name: openvscode-csharp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PUID=1000
+      - PGID=1000
+      # - TZ=Etc/UTC
+      # - CONNECTION_TOKEN= #optional
+      # - CONNECTION_SECRET= #optional
+      - SUDO_PASSWORD=password #optional
+      # - SUDO_PASSWORD_HASH= #optional
+      - DEFAULT_WORKSPACE=/code
+    # volumes:
+      # - ${VSCHTTPYAC_CODE_PATH}:/code
+    #   - /path/to/appdata/config:/config
+    ports:
+      - 3000:3000
+    restart: unless-stopped
